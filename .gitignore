@@ -37,3 +37,19 @@
 # Project files & build
 cmake-build-debug
 .idea
+build/
+_deps/
+CTestTestfile.cmake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+bin/
+lib/
+
+# Compiled executables (project specific)
+RISC_V
+binary32
+mips
+binary32_test
+mips_test
