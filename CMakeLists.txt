@@ -45,13 +45,25 @@ target_link_libraries(binary32_test binary32_lib gtest gtest_main)
 add_executable(mips_test tests/mips_test.cpp)
 target_link_libraries(mips_test mips_lib gtest gtest_main)
 
+add_executable(binary32_extended_test tests/binary32_extended_test.cpp)
+target_link_libraries(binary32_extended_test binary32_lib gtest gtest_main)
+
+add_executable(mips_extended_test tests/mips_extended_test.cpp)
+target_link_libraries(mips_extended_test mips_lib gtest gtest_main)
+
+add_executable(integration_test tests/integration_test.cpp)
+target_link_libraries(integration_test binary32_lib mips_lib gtest gtest_main)
+
 # Register tests with CTest
 add_test(NAME Binary32Tests COMMAND binary32_test)
 add_test(NAME MIPSTests COMMAND mips_test)
+add_test(NAME Binary32ExtendedTests COMMAND binary32_extended_test)
+add_test(NAME MIPSExtendedTests COMMAND mips_extended_test)
+add_test(NAME IntegrationTests COMMAND integration_test)
 
 # Optional: Add a custom target to run all tests
 add_custom_target(run_tests
   COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
-  DEPENDS binary32_test mips_test
+  DEPENDS binary32_test mips_test binary32_extended_test mips_extended_test integration_test
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
