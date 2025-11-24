@@ -1,9 +1,9 @@
-#include <iostream>
-#include <iostream>
 #include <fcntl.h>
 #include <cstdio>
 #include <cwchar>
-#include <fstream>
+#include <iostream>
+
+#include "include/platform.h"
 
 using namespace std;
 
@@ -32,13 +32,7 @@ struct MIPS {
 };
 
 int main() {
-  // Задаём кодировку UTF-16 для всего вывода в программе
-  // Все символы и строки будут wchar_t
-#if WIN32 || WIN64
-  _setmode(_fileno(stdout), _O_U16TEXT);
-  _setmode(_fileno(stdin), _O_U16TEXT);
-  _setmode(_fileno(stderr), _O_U16TEXT);
-#endif
+  platform::init_utf16_console();
   MIPS mips;
   mips.add(L"Сложение", 23500, 90);
   mips.add(L"Умножение", 30900, 160);
